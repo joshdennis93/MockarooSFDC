@@ -1,5 +1,5 @@
 # MockarooSFDC
-Simple class &amp; flow allowing user to generate test data from Mockaroo.
+Simple class &amp; Flow allowing user to generate test data from Mockaroo.
 
 ## INSTALLATION/SETUP:
 1. Clone/download files in repo
@@ -9,17 +9,20 @@ Simple class &amp; flow allowing user to generate test data from Mockaroo.
 5. Press 'Save Changes'. Make sure to copy your API Key (top-right hand corner) and the resulting name of the API (in the Route textbox), making sure to remove the leading / (e.g. 'Account.json', not '/Account.json').
 6. Test in execute anonymous by executing MockarooSFDC.createRecords('yourapi.json','yourapikey',List<YOUROBJECT>.class);
 
-Note that this is in Source format rather than Metadata API format.
+### NOTES:
+- This is in Source format rather than Metadata API format.
+- Mockaroo has an API limit for free accounts - you can currently only make 200 API requests per 24 hours.
 
 ## USAGE:
 MockarooSFDC.cls calls out to Mockaroo using your specified API key & the name of the schema created. Ensure that the schema's field names match your Salesforce API names exactly - e.g. Name in SF = Name in Mockaroo, ExampleField__c in SF = ExampleField__c in Mockaroo.
 
 Example usage of the class: MockarooSFDC.createRecords('Account.json','apikey123456',List<Account>.class);
 
-GenerateTestData.cls included to use this in a flow/process builder, with Generate_Test_data.flow as an example (see picture below for how this could be used). GenerateTestData allows you to just add a text string of the object you intend to create test data for, rather than the full class name e.g. 'Lead' instead of 'List<Account>.class'.
+GenerateTestData.cls included to use this in a Flow/Process Builder, with Generate_Test_data.flow as an example (see picture below for how this could be used). GenerateTestData allows you to just add a text string of the object you intend to create test data for, rather than the full class name e.g. 'Lead' instead of 'List<Account>.class'.
 
-# USE CASES:
-- Create x records after declaratively establishing test
+## USE CASES:
+- Create x records after declaratively establishing test data schema in Mockaroo.
+- Seed sandboxes with prod-like test data after refreshing. Potentially use Flow to create complex hierarchies of related data.
 
-# EXAMPLE:
-![Example](https://github.com/joshdennis93/MockarooSFDC/blob/master/example.PNG)
+## EXAMPLE:
+![example](/example.png)
