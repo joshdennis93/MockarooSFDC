@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>actGenerateData</name>
+        <label>Generate data</label>
+        <locationX>407</locationX>
+        <locationY>50</locationY>
+        <actionName>GenerateTestData</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>key</name>
+            <value>
+                <elementReference>varApexMap.key</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>apiName</name>
+            <value>
+                <elementReference>varApexMap.apiName</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>objString</name>
+            <value>
+                <elementReference>varApexMap.objString</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <assignments>
+        <name>assInputToApex</name>
+        <label>assInputToApex</label>
+        <locationX>286</locationX>
+        <locationY>50</locationY>
+        <assignmentItems>
+            <assignToReference>varApexMap.apiName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>txtAPIName</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varApexMap.key</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>txtKey</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varApexMap.objString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>txtsObjectType</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>actGenerateData</targetReference>
+        </connector>
+    </assignments>
+    <interviewLabel>Generate Test Data {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Generate Test Data</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>Add_Data</name>
+        <label>Add Data</label>
+        <locationX>165</locationX>
+        <locationY>50</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>assInputToApex</targetReference>
+        </connector>
+        <fields>
+            <name>txtAPIName</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <stringValue>example.json</stringValue>
+            </defaultValue>
+            <fieldText>Mockaroo API Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;e.g. example.json&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>txtKey</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <stringValue>c31fe6e0</stringValue>
+            </defaultValue>
+            <fieldText>Mockaroo API Key</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;API key generated once you press Create API on Mockaroo dataset&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>txtsObjectType</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <stringValue>Account</stringValue>
+            </defaultValue>
+            <fieldText>Salesforce sObjectType</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(62, 62, 60);&quot;&gt;e.g. Account, Foo__c&amp;gt;.class&lt;/span&gt;&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Add_Data</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>varApexMap</name>
+        <apexClass>TestDataFormat</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
